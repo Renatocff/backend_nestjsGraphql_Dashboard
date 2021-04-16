@@ -2,7 +2,7 @@ import { Field, HideField, ID, ObjectType } from "@nestjs/graphql";
 import { Conta } from "../conta/conta.entity";
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { nivelUser } from "./dto/nivel-user";
-//import { hashPasswordTransformer } from "../common/helper/crypto";
+import { hashPasswordTransformer } from "../commons/helpers/crypto";
 
 @ObjectType()
 @Entity("User")
@@ -16,7 +16,7 @@ export class User {
     usuario!: string;
 
     @Column({
-        //transformer: hashPasswordTransformer
+        transformer: hashPasswordTransformer
     })
     @HideField()
     senha!: string;

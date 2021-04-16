@@ -1,0 +1,366 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Ativo {
+  id: ID!
+  tipoAtivo: tipoAtivo!
+  tipocompra: tipoCompra!
+  descricao: String!
+  vendido: Boolean
+  nomeProprietario: String!
+  donoReal: String!
+  pais: Paises!
+  uf: Estados!
+  cidade: String!
+  codPostal: String!
+  endereco: String!
+  nr: String!
+  complemento: String
+  bairro: String!
+  idUsuario: Float!
+  idMovimento: Float
+  nrimovel: String
+  renavam: Float
+  placa: String
+  anoModelo: Float
+  anoFab: Float
+  exercicio: Float
+  marca: String
+  modelo: String
+  versao: String
+  chassi: String
+  cor: String
+  combustivel: tipoCombustivel
+  nrMotor: String
+  cilindrada: String
+  nrIncriscao: String
+  dataInscricao: DateTime
+  validade: DateTime
+  nome: String
+  propulsao: String
+  tipoEmbarcacao: String
+  potencia: String
+  nrMotor1: String
+  fabricante1: String
+  nomeMotor2: String
+  fabricante2: String
+  nrMotor3: String
+  fabricante3: String
+  areaNavegacao: String
+  atividade: String
+  nrTripulante: Float
+  nrPassageiro: Float
+  construtor: String
+  anoConstrucao: Float
+  cumprimento: String
+  tipoCasco: String
+  nrSerieCasco: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  movimento: Movimentacoes
+}
+
+"""Tipo de Ativo"""
+enum tipoAtivo {
+  IMOVEL
+  VEICULO
+  EMBARCACAO
+}
+
+"""Tipo de tipoCompra"""
+enum tipoCompra {
+  DINHEIRO
+  CREDITO
+}
+
+"""Listagem de Paises"""
+enum Paises {
+  BRASIL
+}
+
+"""Listagem de Estados"""
+enum Estados {
+  AC
+  AL
+  AP
+  AM
+  BA
+  CE
+  DF
+  ES
+  GO
+  MA
+  MT
+  MS
+  MG
+  PA
+  PB
+  PR
+  PE
+  PI
+  RJ
+  RN
+  RS
+  RO
+  RR
+  SC
+  SP
+  SE
+  TO
+}
+
+"""Tipo de combustivel"""
+enum tipoCombustivel {
+  ALCOOL
+  GASOLINA
+  FLEX
+  DIESEL
+  HIBRIDO
+  ELETRICO
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Movimentacoes {
+  id: ID!
+  tipomovimento: tipoMovimento!
+  descricao: String!
+  valor: Float!
+  ativoId: Float
+  ativo: Ativo
+  compraId: Float
+  contaId: Float!
+  conta: Conta
+  userResponsavelId: Float!
+  estorno: Boolean
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Tipos de Movimento"""
+enum tipoMovimento {
+  ENTRADA
+  SAIDA
+}
+
+type Conta {
+  id: ID!
+  agencia: String!
+  nrconta: String!
+  tipoconta: tipoConta!
+  banco: String!
+  ativo: Boolean!
+  userId: Float!
+  userResponsavel: Float!
+  user: User
+  movimentos: [Movimentacoes!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Tipos de Conta"""
+enum tipoConta {
+  POUPANCA
+  CORRENTE
+}
+
+type User {
+  id: ID!
+  usuario: String!
+  nivel: nivelUser!
+  ativo: Boolean
+  contas: [Conta!]
+  userResponsavel: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""Nível de usuário"""
+enum nivelUser {
+  USUARIO
+  ADMIN
+  OWNER
+}
+
+type Query {
+  users: [User!]!
+  findUserByUsername(usuario: String!): User!
+  findUsuarioById(id: Float!): User!
+  findAllContas(userId: Float!): [Conta!]!
+  findContaByUserId(userId: Float!, id: Float!): [Conta!]!
+  findContaById(userId: Float!, id: Float!): Conta!
+  findAllMoviments(userId: Float!): [Movimentacoes!]!
+  findMovimentById(userResponsavelId: Float!, id: Float!): Movimentacoes!
+  findAllAtivos(userId: Float!): [Ativo!]!
+  findAtivoById(userId: Float!, id: Float!): Ativo!
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+  UpdateUser(data: UpdateUserInput!, id: Float!): User!
+  deleteUserById(id: Float!): Boolean!
+  createConta(data: CreateContaInput!): Conta!
+  UpdateConta(data: UpdateContaInput!, id: Float!): Conta!
+  deleteConta(userId: Float!, id: Float!): Boolean!
+  createMoviment(data: CreateMovimentInput!): Movimentacoes!
+  updateMoviment(data: UpdateMovimentInput!): Movimentacoes!
+  createAtivo(data: CreateAtivoInput!): Ativo!
+  updateAtivo(data: UpdateAtivoInput!, id: Float!): Ativo!
+}
+
+input CreateUserInput {
+  usuario: String!
+  senha: String!
+  nivel: nivelUser!
+}
+
+input UpdateUserInput {
+  senha: String
+  nivel: nivelUser
+  ativo: Boolean
+}
+
+input CreateContaInput {
+  agencia: String!
+  nrconta: String!
+  tipoconta: tipoConta!
+  banco: String!
+  userId: Float!
+}
+
+input UpdateContaInput {
+  agencia: String
+  nrconta: String
+  tipoconta: tipoConta
+  banco: String
+  userId: Float!
+}
+
+input CreateMovimentInput {
+  tipomovimento: tipoMovimento!
+  descricao: String!
+  valor: Float!
+  ativoId: Float
+  contaId: Float!
+  compraId: Float
+  userResponsavelId: Float!
+}
+
+input UpdateMovimentInput {
+  id: Float!
+  estorno: Boolean
+  ativoId: Float
+  userResponsavelId: Float!
+}
+
+input CreateAtivoInput {
+  tipoAtivo: tipoAtivo!
+  tipocompra: tipoCompra!
+  descricao: String!
+  nomeProprietario: String!
+  donoReal: String!
+  pais: Paises!
+  uf: Estados!
+  cidade: String!
+  codPostal: String!
+  endereco: String!
+  nr: String!
+  complemento: String
+  bairro: String!
+  idUsuario: Float!
+  idMovimento: Float
+  nrimovel: String
+  renavam: Float
+  placa: String
+  anoModelo: Float
+  anoFab: Float
+  exercicio: Float
+  marca: String
+  modelo: String
+  versao: String
+  chassi: String
+  cor: String
+  combustivel: tipoCombustivel
+  nrMotor: String
+  cilindrada: String
+  nrIncriscao: String
+  dataInscricao: DateTime
+  validade: DateTime
+  nome: String
+  propulsao: String
+  tipoEmbarcacao: String
+  potencia: String
+  nrMotor1: String
+  fabricante1: String
+  nomeMotor2: String
+  fabricante2: String
+  nrMotor3: String
+  fabricante3: String
+  areaNavegacao: String
+  atividade: String
+  nrTripulante: Float
+  nrPassageiro: Float
+  construtor: String
+  anoConstrucao: Float
+  cumprimento: String
+  tipoCasco: String
+  nrSerieCasco: String
+}
+
+input UpdateAtivoInput {
+  tipoAtivo: tipoAtivo
+  tipocompra: tipoCompra
+  descricao: String
+  nomeProprietario: String
+  donoReal: String
+  pais: Paises
+  uf: Estados
+  cidade: String
+  codPostal: String
+  endereco: String
+  nr: String
+  complemento: String
+  bairro: String
+  idUsuario: Float
+  idMovimento: Float
+  nrimovel: String
+  renavam: Float
+  placa: String
+  anoModelo: Float
+  anoFab: Float
+  exercicio: Float
+  marca: String
+  modelo: String
+  versao: String
+  chassi: String
+  cor: String
+  combustivel: tipoCombustivel
+  nrMotor: String
+  cilindrada: String
+  nrIncriscao: String
+  dataInscricao: DateTime
+  validade: DateTime
+  nome: String
+  propulsao: String
+  tipoEmbarcacao: String
+  potencia: String
+  nrMotor1: String
+  fabricante1: String
+  nomeMotor2: String
+  fabricante2: String
+  nrMotor3: String
+  fabricante3: String
+  areaNavegacao: String
+  atividade: String
+  nrTripulante: Float
+  nrPassageiro: Float
+  construtor: String
+  anoConstrucao: Float
+  cumprimento: String
+  tipoCasco: String
+  nrSerieCasco: String
+}

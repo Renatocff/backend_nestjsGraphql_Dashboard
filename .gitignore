@@ -3,6 +3,7 @@
 /node_modules
 /test
 *.env
+schema.gql
 
 # Logs
 logs
@@ -19,6 +20,7 @@ lerna-debug.log*
 /coverage
 /.nyc_output
 *.spec.ts
+
 
 # IDEs and editors
 /.idea

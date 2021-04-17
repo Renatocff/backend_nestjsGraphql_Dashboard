@@ -1,6 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-//import { GqlAuthGuard } from '../auth/auth.guard';
+import { GqlAuthGuard } from '../auth/auth.guard';
 import { Ativo } from './ativo.entity';
 import { AtivoService } from './ativo.service';
 import { CreateAtivoInput } from './dto/create-ativo.input';
@@ -13,7 +13,7 @@ export class AtivoResolver {
     ){}
 
     @Query(() => [Ativo])
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async findAllAtivos(
         @Args('userId') userId: number
     ): Promise<Ativo[]>{
@@ -22,7 +22,7 @@ export class AtivoResolver {
     }
 
     @Query(() => Ativo)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async findAtivoById(
         @Args('id') id: number,
         @Args('userId') userId: number
@@ -32,7 +32,7 @@ export class AtivoResolver {
     }
 
     @Mutation(() => Ativo)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async createAtivo(
         @Args('data') data: CreateAtivoInput
     ): Promise<Ativo>{
@@ -41,7 +41,7 @@ export class AtivoResolver {
     }
 
     @Mutation(() => Ativo)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async updateAtivo(
         @Args('id') id: number,
         @Args('data') data: UpdateAtivoInput

@@ -1,0 +1,23 @@
+[33mcommit 89cd40341508fac4d84d81a658adeaf9f2aba884[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m)[m
+Author: Renatocff <renatocff@gmail.com>
+Date:   Fri Apr 16 20:29:48 2021 -0300
+
+    adicionada criptografia na senha do usuario
+
+[33mcommit 2ff5344f487b1fdcc201aaf508f52cd6a285ee6e[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Renatocff <renatocff@gmail.com>
+Date:   Fri Apr 16 19:10:26 2021 -0300
+
+    editando gitignore .env e .gql
+
+[33mcommit a7556da09f96f5d32c130b2891d12e6f7cd7ab31[m
+Author: Renatocff <renatocff@gmail.com>
+Date:   Fri Apr 16 18:57:17 2021 -0300
+
+    adicionado modulos completos e funcionais, user, conta, movimentacoes, ativo e pasta utils com estados e paises, tambem configurada as conexões de banco de dados com o .env e o typeorm
+
+[33mcommit 6130d27819e549673afb5dd087a6ac5ec79feafc[m
+Author: Renatocff <renatocff@gmail.com>
+Date:   Thu Apr 15 19:13:54 2021 -0300
+
+    Primeiro commit

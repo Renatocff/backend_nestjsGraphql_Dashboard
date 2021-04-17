@@ -1,6 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-//import { GqlAuthGuard } from '../auth/auth.guard';
+import { GqlAuthGuard } from '../auth/auth.guard';
 import { CreateMovimentInput } from './dto/create-moviment.input';
 import { UpdateMovimentInput } from './dto/update-moviment.input';
 import { Movimentacoes } from './movimentacoes.entity';
@@ -13,7 +13,7 @@ export class MovimentacoesResolver {
     ){}
 
     @Query(() => [Movimentacoes])
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async findAllMoviments(
         @Args('userId') userId: number
     ): Promise<Movimentacoes[]>{
@@ -22,7 +22,7 @@ export class MovimentacoesResolver {
     }
 
     @Query(() => Movimentacoes)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async findMovimentById(
         @Args('id') id: number,
         @Args('userResponsavelId') userResponsavelId: number
@@ -32,7 +32,7 @@ export class MovimentacoesResolver {
     }
 
     @Mutation(() => Movimentacoes)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async createMoviment(
         @Args('data') data: CreateMovimentInput
     ): Promise<Movimentacoes>{
@@ -41,7 +41,7 @@ export class MovimentacoesResolver {
     }
 
     @Mutation(() => Movimentacoes)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async updateMoviment(
         @Args('data') data: UpdateMovimentInput
     ): Promise<Movimentacoes>{

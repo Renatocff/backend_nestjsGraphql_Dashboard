@@ -12,6 +12,7 @@ import { AtivoModule } from './ativo/ativo.module';
 //import { PromocaoModule } from './promocao/promocao.module';
 //import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { ConfigModule } from '@nestjs/config';
     ContaModule,
     MovimentacoesModule,
     AtivoModule,
+    AuthModule,
     //FuncionarioModule,
     //PromocaoModule,
     //AuthModule,

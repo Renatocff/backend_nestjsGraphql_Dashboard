@@ -1,6 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-//import { GqlAuthGuard } from '../auth/auth.guard';
+import { GqlAuthGuard } from '../auth/auth.guard';
 import { Conta } from './conta.entity';
 import { ContaService } from './conta.service';
 import { CreateContaInput } from './dto/create-conta.input';
@@ -13,7 +13,7 @@ export class ContaResolver {
     ){}
 
     @Query(() => [Conta])
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async findAllContas(
         @Args('userId') userId: number
     ): Promise<Conta[]>{
@@ -22,7 +22,7 @@ export class ContaResolver {
     }
 
     @Query(() => [Conta])
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async findContaByUserId(
         @Args('id') id: number,
         @Args('userId') userId: number,
@@ -32,7 +32,7 @@ export class ContaResolver {
     }
 
     @Query(() => Conta)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async findContaById(
         @Args('id') id: number,
         @Args('userId') userId: number,
@@ -42,7 +42,7 @@ export class ContaResolver {
     }
 
     @Mutation(() => Conta)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async createConta(
         @Args('data') data: CreateContaInput
     ): Promise<Conta>{
@@ -51,7 +51,7 @@ export class ContaResolver {
     }
 
     @Mutation(() => Conta)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async UpdateConta(
         @Args('id') id: number,
         @Args('data') data: UpdateContaInput
@@ -61,7 +61,7 @@ export class ContaResolver {
     }
 
     @Mutation(() => Boolean)
-    //@UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard)
     async deleteConta(
         @Args('id') id: number,
         @Args('userId') userId: number

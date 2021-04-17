@@ -186,6 +186,11 @@ enum nivelUser {
   OWNER
 }
 
+type AuthType {
+  user: User!
+  token: String!
+}
+
 type Query {
   users: [User!]!
   findUserByUsername(usuario: String!): User!
@@ -210,6 +215,7 @@ type Mutation {
   updateMoviment(data: UpdateMovimentInput!): Movimentacoes!
   createAtivo(data: CreateAtivoInput!): Ativo!
   updateAtivo(data: UpdateAtivoInput!, id: Float!): Ativo!
+  login(data: AuthInput!): AuthType!
 }
 
 input CreateUserInput {
@@ -363,4 +369,9 @@ input UpdateAtivoInput {
   cumprimento: String
   tipoCasco: String
   nrSerieCasco: String
+}
+
+input AuthInput {
+  usuario: String!
+  senha: String!
 }

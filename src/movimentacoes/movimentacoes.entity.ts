@@ -5,7 +5,7 @@ import { tipoMovimento } from "./dto/tipo-movimento";
 import { Ativo } from "../ativo/ativo.entity";
 
 @ObjectType()
-@Entity("Movimentacoes")
+@Entity({name:"Movimentacoes", synchronize: false})
 export class Movimentacoes{
     
     @PrimaryGeneratedColumn()

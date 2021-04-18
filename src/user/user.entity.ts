@@ -5,7 +5,7 @@ import { nivelUser } from "./dto/nivel-user";
 import { hashPasswordTransformer } from "../commons/helpers/crypto";
 
 @ObjectType()
-@Entity("User")
+@Entity({name:"User", synchronize: false})
 export class User {
 
     @PrimaryGeneratedColumn()

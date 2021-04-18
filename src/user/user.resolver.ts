@@ -1,4 +1,4 @@
-import { InternalServerErrorException, UseGuards } from '@nestjs/common';
+import { HttpException, HttpStatus, InternalServerErrorException, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuard } from '../auth/auth.guard';
 import { CreateUserInput } from './dto/create-user.input';

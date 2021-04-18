@@ -8,7 +8,7 @@ import { tipoCombustivel } from "./dto/tipo-combustivel";
 import { tipoCompra } from "./dto/tipo-compra";
 
 @ObjectType()
-@Entity("Ativo")
+@Entity({name:"Ativo", synchronize: false})
 export class Ativo {
 
     @PrimaryGeneratedColumn()

@@ -38,6 +38,7 @@ export class MovimentacoesService {
             relations: ["ativo", "conta"],
             where: {id: idMovimento} 
         });
+
         return movimento;
     }
 

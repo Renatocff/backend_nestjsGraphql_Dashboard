@@ -5,7 +5,7 @@ import { tipoConta } from "./dto/tipo-conta";
 import { Movimentacoes } from "../movimentacoes/movimentacoes.entity";
 
 @ObjectType()
-@Entity("Conta")
+@Entity({name:"Conta", synchronize: false})
 export class Conta{
 
     @PrimaryGeneratedColumn()

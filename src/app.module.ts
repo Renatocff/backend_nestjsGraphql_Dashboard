@@ -8,11 +8,9 @@ import { UserModule } from './user/user.module';
 import { ContaModule } from './conta/conta.module';
 import { MovimentacoesModule } from './movimentacoes/movimentacoes.module';
 import { AtivoModule } from './ativo/ativo.module';
-//import { FuncionarioModule } from './funcionario/funcionario.module';
-//import { PromocaoModule } from './promocao/promocao.module';
-//import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 @Module({
   imports: [
@@ -22,15 +20,19 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forRoot(),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      formatError: (error) => {
+        const graphQLFormattedError = {
+          message: error.extensions?.exception?.response?.message || error.message,
+          code: error.extensions?.exception?.status
+        };
+        return graphQLFormattedError;
+      },
     }),
     UserModule,
     ContaModule,
     MovimentacoesModule,
     AtivoModule,
-    AuthModule,
-    //FuncionarioModule,
-    //PromocaoModule,
-    //AuthModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

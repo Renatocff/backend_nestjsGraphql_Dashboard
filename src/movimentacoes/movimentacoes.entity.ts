@@ -24,7 +24,7 @@ export class Movimentacoes{
     @Column()
     valor!: number;
 
-    @Column({ name: 'ativoId', nullable: true})
+    @Column({ name: 'ativoId', default: 0})
     ativoId?: number;
 
     @OneToOne(() => Ativo, ativo => ativo.movimento) // specify inverse side as a second parameter

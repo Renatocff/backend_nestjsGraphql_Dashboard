@@ -10,7 +10,6 @@ import { MovimentacoesModule } from './movimentacoes/movimentacoes.module';
 import { AtivoModule } from './ativo/ativo.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 @Module({
   imports: [

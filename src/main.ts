@@ -1,6 +1,6 @@
-import { ValidationError, ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { UserInputError } from 'apollo-server-express';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -8,6 +8,7 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe(),
   );
+  
   await app.listen(3000);
 }
 bootstrap();

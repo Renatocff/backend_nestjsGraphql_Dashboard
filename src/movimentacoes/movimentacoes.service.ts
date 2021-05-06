@@ -22,7 +22,9 @@ export class MovimentacoesService {
             throw new UnauthorizedException(`Operação não autorizada para o usuário ${user.usuario}`);
         }
 
-        const movimentos = await this.movimentacoesRepository.find();
+        const movimentos = await this.movimentacoesRepository.find({
+            relations: ["ativo", "conta"],
+        });
         return movimentos;
     }
 

@@ -243,6 +243,7 @@ input UpdateContaInput {
   nrconta: String
   tipoconta: tipoConta
   banco: String
+  ativo: Boolean
   userId: Float!
 }
 

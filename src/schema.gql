@@ -136,6 +136,7 @@ type Movimentacoes {
   contaId: Float!
   conta: Conta
   userResponsavelId: Float!
+  usuario: User
   estorno: Boolean
   createdAt: DateTime!
   updatedAt: DateTime!

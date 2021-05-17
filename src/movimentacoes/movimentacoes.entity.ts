@@ -3,6 +3,7 @@ import { Conta } from "../conta/conta.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { tipoMovimento } from "./dto/tipo-movimento";
 import { Ativo } from "../ativo/ativo.entity";
+import { User } from '../user/user.entity';
 
 @ObjectType()
 @Entity({name:"Movimentacoes", synchronize: false})
@@ -45,8 +46,14 @@ export class Movimentacoes{
     ])
     conta?: Conta;
 
-    @Column()
+    @Column({ name: 'userResponsavelId', default: 0})
     userResponsavelId!: number;
+
+    @OneToOne(() => User, user => user.id) // specify inverse side as a second parameter
+    @JoinColumn([
+        { name: "userResponsavelId", referencedColumnName: "id" }
+    ])
+    usuario?: User;
 
     @Column({ default: false })
     estorno?: boolean;

@@ -23,7 +23,7 @@ export class MovimentacoesService {
         }
 
         const movimentos = await this.movimentacoesRepository.find({
-            relations: ["ativo", "conta"],
+            relations: ["ativo", "conta", "usuario"],
         });
         return movimentos;
     }
@@ -37,7 +37,7 @@ export class MovimentacoesService {
         }
 
         const movimento = await this.movimentacoesRepository.findOne({ 
-            relations: ["ativo", "conta"],
+            relations: ["ativo", "conta", "usuario"],
             where: {id: idMovimento} 
         });
 

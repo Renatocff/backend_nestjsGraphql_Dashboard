@@ -52,9 +52,14 @@ export class MovimentacoesService {
             throw new UnauthorizedException(`Operação não autorizada para o usuário ${user.usuario}`);
         }
 
-        const movimento = await this.movimentacoesRepository.save(data);
+        const movimentoCreated = await this.movimentacoesRepository.save(data);
 
-        if(!movimento){
+        const movimento = await this.movimentacoesRepository.findOne({ 
+            relations: ["ativo", "conta", "usuario"],
+            where: {id: movimentoCreated.id} 
+        });
+
+        if(!movimentoCreated){
             throw new InternalServerErrorException(`Não foi possível criar o movimento ${data.descricao}`);
         }
 
